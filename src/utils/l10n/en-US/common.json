@@ -1,0 +1,25 @@
+{   "title": "RUSSIAN VOLUNTEER REGIMENT",
+    "title_abbr": "RVR",
+    "join": "Join",
+    "help": "Help",
+    "intelligence_reporting": "Intelligence reporting",
+    "community": "Community",
+    "blog": "Blog",
+    "about": "About us",
+    "contacts": "Contact us",
+    "donate" : "Donate",
+    "offer_help": "Offer help",
+    "more_options": "More options",
+    "help_rvr": "Help RVR",
+    "to_main": "To the main page",
+    "copy": "Copy",
+    "blog_block": {
+        "title": "OUR PUBLICATIONS"
+    },
+    "join_block" : {
+        "send": "Send form"
+    },
+    "help_block" : {
+        "to_reqs": "Requisites"
+    }
+}

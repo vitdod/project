@@ -1,0 +1,12 @@
+import { memo, SVGProps } from 'react'
+
+const Menu = (props: SVGProps<SVGSVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 5H20V7H4V5Z" fill="white" fillOpacity="0.7" />
+    <path d="M4 17H20V19H4V17Z" fill="white" fillOpacity="0.7" />
+    <path d="M20 11H4V13H20V11Z" fill="white" fillOpacity="0.7" />
+  </svg>
+)
+
+const Memo = memo(Menu)
+export { Memo as Menu }

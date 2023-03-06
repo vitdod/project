@@ -23,6 +23,7 @@ const HomePage = ({ nodes }: HomePageProps) => {
 }
 
 export const getStaticProps: GetStaticProps<SSRConfig> = async ({ locale }) => {
+  // на всех страницах запросы на вп идут через GraphQl запросы с параметрами
   const { data } = await fetchQuery({ params: { locale } })
   if (!data.pages || !data.pages.nodes.length || !data.pages.nodes[0].seo.metaDesc) {
     return {
