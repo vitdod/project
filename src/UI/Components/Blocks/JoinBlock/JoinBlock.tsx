@@ -10,17 +10,21 @@ type JoinBlockProps = {
 export const JoinBlock = ({ data }: JoinBlockProps) => {
   return (
     <div className={blocksWrapper({ type: 'helpPageBlocksWrapper' })}>
-      {data.joinBlock.map((el) => {
-        return (
-          <div style={{ paddingBottom: '40px' }}>
-            <p style={{ paddingBottom: '15px' }} className={blockHeading({ color: 'red' })}>
-              {el.title}
-            </p>
+      {data.joinBlock ? (
+        data.joinBlock.map((el) => {
+          return (
+            <div style={{ paddingBottom: '40px' }}>
+              <p style={{ paddingBottom: '15px' }} className={blockHeading({ color: 'red' })}>
+                {el.title}
+              </p>
 
-            <BlogTextWrapper className={blogWrapper.other} html={el.text} />
-          </div>
-        )
-      })}
+              <BlogTextWrapper className={blogWrapper.other} html={el.text} />
+            </div>
+          )
+        })
+      ) : (
+        <div></div>
+      )}
     </div>
   )
 }

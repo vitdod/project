@@ -1,7 +1,9 @@
 import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import { GetStaticPaths, GetStaticProps } from 'next/types'
 import { ParsedUrlQuery } from 'querystring'
+import { useEffect } from 'react'
 import { blogPostTitle, blogWrapper } from '../../../UI/Components/Blocks/BlogPostsBlock/BlogPost.css'
 import { blocksWrapper } from '../../../UI/Layouts/LayoutRecipes.css'
 import { fetchBlogPost, fetchBlogPostPaths } from '../../../utils/fetchQuery'
@@ -17,6 +19,12 @@ type BlogPostProps = {
 }
 
 const BlogPost = ({ post }: BlogPostProps) => {
+  const router = useRouter()
+  useEffect(() => {
+    if (!post.title) {
+      router.push('/ru-RU/404')
+    }
+  })
   const content = post.content
   return (
     <>
@@ -32,7 +40,6 @@ export const getStaticProps: GetStaticProps<SSRConfig> = async ({ params, locale
   const { slug } = params as IParams
   const { data } = await fetchBlogPost({ params: { slug } })
   const { post } = data
-  console.log(post)
   if (!post) {
     return {
       notFound: true,
@@ -40,7 +47,7 @@ export const getStaticProps: GetStaticProps<SSRConfig> = async ({ params, locale
   }
   return {
     props: { post, ...(await serverSideTranslations(locale, ['common'])) },
-    revalidate: 10000,
+    revalidate: 60,
   }
 }
 

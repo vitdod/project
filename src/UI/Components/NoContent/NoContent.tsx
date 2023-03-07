@@ -14,9 +14,7 @@ const NoContent = () => {
     <div className={blocksWrapper({ type: 'headerBlockWrapper' })}>
       <div className={headerInfoBlockWrapper({ type: 'errorPageWrapper' })}>
         <h1 className={mainTitleErrorPage}>{t('title')}</h1>
-        <p className={headerBlockIntro({ type: 'headerBlockIntroErrorPage' })}>
-          Вы перешли по ошибочной ссылке — такой страницы не существует, или она была удалена.
-        </p>
+        <p className={headerBlockIntro({ type: 'headerBlockIntroErrorPage' })}>{t('error.404_message')}</p>
         <div className={errorPageButtonWrapper}>
           <Link href="/">
             <Button className={headerButton({ type: 'single' })} tone="red" text={t('to_main')} />

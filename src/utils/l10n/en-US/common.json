@@ -21,5 +21,9 @@
     },
     "help_block" : {
         "to_reqs": "Requisites"
+    },
+    "error" : {
+        "404": "404 Error",
+        "404_message": "You followed the wrong path: it's either non-existent, or was deleted."
     }
 }

@@ -9,6 +9,7 @@ type JoinBlockProps = {
   data: WPAboutBlock
 }
 export const AboutBlock = ({ data }: JoinBlockProps) => {
+  if (!data.aboutBlock) return <div></div>
   return (
     <div className={blocksWrapper({ type: 'helpPageBlocksWrapper' })}>
       {data.aboutBlock.map((el) => {

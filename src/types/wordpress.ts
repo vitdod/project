@@ -1,7 +1,8 @@
 export type WPStartPageNode = {
     headerBlock: WPHeaderBlockInfo,
     infoBlock: WPInfoBlockInfo,
-    questionsBlock: WPQuestionsBlockInfo
+    questionsBlock: WPQuestionsBlockInfo,
+    seo: WPSeoBlock
 }
 
 export type WPStartPageBlocks = WPHeaderBlockInfo | WPInfoBlockInfo | WPQuestionsBlockInfo

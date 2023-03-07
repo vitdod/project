@@ -1,5 +1,6 @@
 import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next/types'
 import { useEffect } from 'react'
 import { HomePageProps } from '..'
@@ -9,6 +10,12 @@ import { fetchBlogQuery } from '../../utils/fetchQuery'
 import { MakeRawNodes, transformedBlocks } from '../../utils/wordpress'
 
 const Blog = ({ nodes }: HomePageProps) => {
+  const router = useRouter()
+  useEffect(() => {
+    if (!nodes[0].seo.metaDesc) {
+      router.push('/ru-RU/404')
+    }
+  })
   const { setIsOpened } = useSidebarState()
   const isClientSide = useClientSide()
   useEffect(() => {
@@ -26,18 +33,18 @@ const Blog = ({ nodes }: HomePageProps) => {
 export const getStaticProps: GetStaticProps<SSRConfig> = async ({ locale }) => {
   // console.log(context)
   const { data } = await fetchBlogQuery({ params: { locale } })
-  if (!data.pages || !data.pages.nodes.length || !data.pages.nodes[0].seo.metaDesc) {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
-    }
-  }
+  // if (!data.pages || !data.pages.nodes.length || !data.pages.nodes[0].seo.metaDesc) {
+  //   return {
+  //     redirect: {
+  //       destination: '/404',
+  //       permanent: false,
+  //     },
+  //   }
+  // }
   const nodes = data.pages.nodes
   return {
     props: { nodes, ...(await serverSideTranslations(locale, ['common'])) },
-    revalidate: 10000,
+    revalidate: 60,
   }
 }
 
