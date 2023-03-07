@@ -20,6 +20,9 @@ type BlogPostProps = {
 
 const BlogPost = ({ post }: BlogPostProps) => {
   const router = useRouter()
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
   useEffect(() => {
     if (!post.title) {
       router.push('/ru-RU/404')
@@ -43,6 +46,7 @@ export const getStaticProps: GetStaticProps<SSRConfig> = async ({ params, locale
   if (!post) {
     return {
       notFound: true,
+      revalidate: 60,
     }
   }
   return {
@@ -78,7 +82,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   })
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
